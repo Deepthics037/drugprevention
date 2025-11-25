@@ -1,0 +1,179 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Youth Support Portal — Say no to drugs, say yes to health</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">Youth<span>Rise</span></div>
+      <div class="tag">Say no to drugs — say yes to health</div>
+    </div>
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#awareness">Awareness</a>
+      <a href="#support">Support</a>
+      <a href="#mood">Mood Tracker</a>
+      <a href="#chat">AI Chat</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Say no to drugs — <span class="accent">say yes to health</span></h1>
+        <p class="lead">A safe, confidential space for youth. Find resources, peer support, and tools to stay strong and healthy.</p>
+        <div class="hero-actions">
+          <a href="#support" class="btn primary">Get Support</a>
+          <a href="#awareness" class="btn ghost">Learn More</a>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Confidential Help</strong>
+            <small>Talk to volunteers and professionals</small>
+          </div>
+          <div class="feature">
+            <strong>Mood Tracker</strong>
+            <small>Track & reflect — optional camera snapshot</small>
+          </div>
+          <div class="feature">
+            <strong>AI Support</strong>
+            <small>Instant friendly guidance (not a substitute for emergency help)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-shape">
+          <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#ff7ab6"/>
+                <stop offset="1" stop-color="#7a5cff"/>
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" rx="28" fill="url(#g1)"></rect>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARENESS -->
+    <section id="awareness" class="panel">
+      <h2>Awareness</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Why drugs are harmful</h3>
+          <p>Short & clear information on physical, mental, and social consequences of substance misuse.</p>
+        </article>
+        <article class="card">
+          <h3>Recognize signs</h3>
+          <p>Behavioural and health signs you or friends might need help — and how to respond safely.</p>
+        </article>
+        <article class="card">
+          <h3>Prevention & coping</h3>
+          <p>Practical strategies: saying no, building healthy routines, and finding supportive communities.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="panel">
+      <h2>Support</h2>
+      <div class="support-grid">
+        <div>
+          <h3>Immediate support</h3>
+          <p>If you are in danger, contact your local emergency services first. For counseling and referrals, use chat or contact form.</p>
+          <ul>
+            <li>Confidential counselling</li>
+            <li>Peer support groups</li>
+            <li>Referral to rehabilitation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>How to reach us</h3>
+          <p>Use AI Chat for instant tips or submit the contact form. We usually respond within 1–3 business days.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOOD TRACKER -->
+    <section id="mood" class="panel">
+      <h2>Mood Tracker</h2>
+      <p>Quickly log how you're feeling. You can optionally take a webcam snapshot — images are stored privately.</p>
+
+      <div class="mood-wrap">
+        <div class="mood-left">
+          <label>How are you feeling right now?</label>
+          <input id="moodSlider" type="range" min="0" max="10" value="5" />
+          <div class="mood-meter"><span id="moodValue">5</span>/10</div>
+          <textarea id="moodNote" placeholder="Optional note (what happened today?)"></textarea>
+          <div class="mood-actions">
+            <button id="submitMood" class="btn primary">Submit Mood</button>
+            <button id="startCamera" class="btn ghost">Start Camera</button>
+          </div>
+          <div id="moodResult" class="muted small"></div>
+        </div>
+
+        <div class="mood-right">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="snapshot" style="display:none"></canvas>
+          <div class="camera-controls">
+            <button id="capture" class="btn">Capture & Send</button>
+            <button id="stopCamera" class="btn ghost">Stop Camera</button>
+          </div>
+          <div id="cameraStatus" class="muted small">Camera off</div>
+          <button onclick="window.location.href='mood-history.php'" class="btn ghost">View Mood History</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI CHAT (VOICE + TEXT) -->
+    <section id="chat" class="panel">
+      <h2>AI Voice Chat Support</h2>
+      <p class="muted small">Talk or type — the chatbot will reply with voice.</p>
+
+      <div class="chatbox">
+        <div id="chatLog" class="chat-log" role="log" aria-live="polite"></div>
+
+        <div class="chat-input">
+          <button id="voiceBtn" class="btn">🎤 Speak</button>
+          <input id="chatInput" type="text" placeholder="Speak or type a message..." />
+          <button id="sendChat" class="btn">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="panel">
+      <h2>Contact</h2>
+      <form id="contactForm" class="contact-form">
+        <label>Name <input name="name" required /></label>
+        <label>Email <input name="email" type="email" required /></label>
+        <label>Phone <input name="phone" type="text" /></label>
+        <label>Message <textarea name="message" required></textarea></label>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Send Message</button>
+        </div>
+        <div id="contactResult" class="muted small"></div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>© <span id="year"></span> YouthRise • Confidential & Secure</div>
+    <div class="small muted">If this is an emergency, call local emergency services immediately.</div>
+  </footer>
+
+  <!-- Note: app.js must include the chat voice JS we discussed (sendMessage, offlineAI, speak, recognition). -->
+</body>
+</html>
